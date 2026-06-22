@@ -3,6 +3,7 @@ import { useState } from 'react'
 import styles from './login.module.scss'
 import Input from '../../ui/input/input.tsx'
 import Button from '../../ui/button/button'
+import { useNavigate } from 'react-router-dom'
 
 
 
@@ -10,11 +11,30 @@ export const Login = () => {
   const [] = useState(0)
   const [login, setLogin] = useState('')       // текст в поле "Логин"
   const [password, setPassword] = useState('') // текст в поле "Пароль"
+  const navigate = useNavigate()
+
+  // Функция входа с захардкоженными данными
   const handleLogin = () => {
-    console.log('Логин:', login)
-    console.log('Пароль:', password)
-    // Здесь позже будет запрос к серверу для авторизации
+    // Проверка: логин "1" и пароль "1" → студент
+    if (login === '1' && password === '1') {
+      localStorage.setItem('token', 'student-token')      // сохраняем признак авторизации
+      localStorage.setItem('role', 'student')             // сохраняем роль
+      navigate('/student')                                // перенаправляем на страницу студента
+      return                                              // выходим из функции
+    }
+
+    // Проверка: логин "2" и пароль "2" → лектор
+    if (login === '2' && password === '2') {
+      localStorage.setItem('token', 'teacher-token')
+      localStorage.setItem('role', 'teacher')
+      navigate('/teacher')
+      return
+    }
+
+    // Если логин/пароль не совпали — показываем ошибку
+    alert('Неверный логин или пароль')
   }
+
 
   
   return (

@@ -5,6 +5,7 @@ import type { ReactNode } from 'react';
 // Импортируйте ваши страницы (создайте их позже)
 import { Login } from '../components/pages/login/login.tsx';
 import { MainStudent } from '../components/pages/mainStudentPage/mainStudentPage.tsx';
+import { MainTeacher } from '../components/pages/mainTeacherPage/mainTeacherPage.tsx';
 // Компонент для защиты маршрутов (опционально)
 interface ProtectedRouteProps {
   children: ReactNode;
@@ -27,13 +28,27 @@ export const Router = () => {
   return (
     <Routes>
       {/* Публичные маршруты */}
+      {/* Корневой путь → перенаправление на логин */}
+      <Route path="/" element={<Navigate to="/login" replace />} />
+      {/* Страница входа — доступна всем */}
       <Route path="/login" element={<Login />} />
       {/* Защищенные маршруты */}
+      {/* Страница студента — только для роли "student" */}
       <Route
-        path="/"
+        path="/student"
         element={
-          <ProtectedRoute>
+          <ProtectedRoute role="student">
             <MainStudent />
+          </ProtectedRoute>
+        }
+      />
+
+      {/* Страница лектора — только для роли "teacher" */}
+      <Route
+        path="/teacher"
+        element={
+          <ProtectedRoute role="teacher">
+            <MainTeacher />
           </ProtectedRoute>
         }
       />
