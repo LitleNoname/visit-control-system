@@ -1,10 +1,22 @@
 import { useState } from 'react'
 // Подключаем SCSS-модуль (импорт как объект со всеми классами)
 import styles from './login.module.scss'
+import Input from '../../ui/input/input.tsx'
+import Button from '../../ui/button/button'
+
+
 
 export const Login = () => {
   const [] = useState(0)
+  const [login, setLogin] = useState('')       // текст в поле "Логин"
+  const [password, setPassword] = useState('') // текст в поле "Пароль"
+  const handleLogin = () => {
+    console.log('Логин:', login)
+    console.log('Пароль:', password)
+    // Здесь позже будет запрос к серверу для авторизации
+  }
 
+  
   return (
     // Главный контейнер страницы
     <div className={styles.page}>
@@ -57,20 +69,31 @@ export const Login = () => {
           Войдите в систему для отметки<br/>или просмотра табелей
         </p>
 
-        {/* Поле ввода логина */}
-        <div className={styles.inputGroup}>
-          <label className={styles.inputLabel}>Логин</label>
-          <input type="text" className={styles.inputField} />
-        </div>
+        {/* ПОЛЕ ЛОГИНА — теперь компонент Input */}
+        <Input
+          label="Логин"
+          type="text"
+          value={login}
+          onChange={(event) => setLogin(event.target.value)}
+          placeholder="Введите логин"
+          name="login"
+        />
 
-        {/* Поле ввода пароля */}
-        <div className={styles.inputGroup}>
-          <label className={styles.inputLabel}>Пароль</label>
-          <input type="password" className={styles.inputField} />
-        </div>
+        {/* ПОЛЕ ПАРОЛЯ — теперь компонент Input */}
+        <Input
+          label="Пароль"
+          type="password"
+          value={password}
+          onChange={(event) => setPassword(event.target.value)}
+          placeholder="Введите пароль"
+          name="password"
+        />
 
-        {/* Кнопка "Войти" */}
-        <button className={styles.loginButton}>Войти</button>
+        {/* Кнопка "Войти" — теперь компонент Button */}
+        <Button onClick={handleLogin}>
+          Войти
+        </Button>
+
       </div>
     </div>
   )

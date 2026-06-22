@@ -1,0 +1,38 @@
+/* ---------- ПЕРЕМЕННЫЕ (те же цвета, что и в макете) ---------- */
+$color-btn-default: #967267;       // цвет кнопки по умолчанию
+$color-btn-text: #FFF6EE;          // цвет текста по умолчанию
+$color-btn-hover-border: #FFF6EE;  // цвет внутренней обводки при наведении
+$color-btn-pressed: #9A6962;       // цвет кнопки при нажатии
+$color-btn-text-pressed: #D5B1A2;  // цвет текста при нажатии
+
+/* ---------- КНОПКА ---------- */
+.button {
+  width: 222px;                     // фиксированная ширина по макету
+  height: 88px;                     // фиксированная высота по макету
+  background-color: $color-btn-default;
+  border: none;                     // убираем стандартную рамку
+  border-radius: 6px;               // скругление углов
+  font-family: 'KyivTypeSerif', serif;
+  font-size: 40px;
+  font-weight: 800;                 // Heavy2
+  letter-spacing: 0.08em;           // 8% межбуквенного расстояния
+  color: $color-btn-text;
+  cursor: pointer;                  // курсор-указатель при наведении
+  transition: all 0.1s ease;        // плавная анимация всех изменений
+  display: inline-flex;             // чтобы текст внутри центрировался
+  align-items: center;              // вертикальное центрирование текста
+  justify-content: center;          // горизонтальное центрирование текста
+  padding: 0;                       // убираем внутренние отступы
+
+  // Состояние Hover – наведение мыши
+  &:hover {
+    box-shadow: inset 0 0 0 6px $color-btn-hover-border;
+  }
+
+  // Состояние Active – кнопка нажата
+  &:active {
+    background-color: $color-btn-pressed;
+    color: $color-btn-text-pressed;
+    box-shadow: none;               // убираем обводку при нажатии
+  }
+}

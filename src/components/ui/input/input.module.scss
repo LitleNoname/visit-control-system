@@ -1,0 +1,50 @@
+/* ---------- ПЕРЕМЕННЫЕ ---------- */
+$color-label: #744C4C;
+$color-input-bg: #744C4C;
+$color-input-text: #FFF6EE;
+
+/* ---------- ГРУППА: НАДПИСЬ + ПОЛЕ ВВОДА ---------- */
+.inputGroup {
+  width: 100%;                      // занимает всю ширину родителя (формы)
+  display: flex;
+  flex-direction: column;           // надпись над полем
+  align-items: flex-start;
+  gap: 5px;                         // расстояние между надписью и полем
+
+  // Надпись ("Логин", "Пароль" или любая другая)
+  .inputLabel {
+    font-family: 'KyivTypeSerif', serif;
+    font-size: 20px;
+    font-weight: 800;               // Heavy2
+    letter-spacing: 0.08em;         // 8% межбуквенного расстояния
+    color: $color-label;
+    margin: 0;
+  }
+
+  // Само поле ввода
+  .inputField {
+    width: 100%;
+    height: 93px;                   // фиксированная высота по макету
+    background-color: $color-input-bg;
+    border: none;
+    color: $color-input-text;       // цвет текста, который вводит пользователь
+    font-family: serif;
+    font-size: 20px;
+    padding: 0 15px;                // отступы внутри, чтобы текст не прилипал к краям
+    box-sizing: border-box;         // padding не увеличивает общую ширину
+    outline: none;                  // убираем синюю обводку браузера при фокусе
+
+    // Когда поле в фокусе (пользователь кликнул в него)
+    &:focus {
+      // можно добавить лёгкое свечение или обводку для доступности
+      box-shadow: inset 0 0 0 2px #FFF6EE;
+    }
+
+    // Подсказка внутри поля (placeholder)
+    &::placeholder {
+      color: rgba(255, 246, 238, 0.5);  // полупрозрачный светлый текст
+      font-family: serif;
+      font-size: 20px;
+    }
+  }
+}

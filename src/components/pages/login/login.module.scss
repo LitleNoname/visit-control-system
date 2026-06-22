@@ -1,233 +1,246 @@
 /* ---------- ПОДКЛЮЧЕНИЕ ШРИФТА ---------- */
 /* Файлы шрифта лежат в папке /fonts */
 @font-face {
-    font-family: 'KyivTypeSerif';
-    src: url('/fonts/KyivTypeSerif-Heavy2.woff2') format('woff2');          /*ИСПРАВИТЬ СТРОКУ ШРИФТА, ДОБАВИТЬ ОБРАЗЕЦ В ПАПКЕ FONTS. ДОБАВИТЬ*/
-    font-weight: 800;
-    font-style: normal;
+  font-family: 'KyivTypeSerif';
+  src: url('/fonts/KyivTypeSerif-Heavy2.woff2') format('woff2');
+  /*ИСПРАВИТЬ СТРОКУ ШРИФТА, ДОБАВИТЬ ОБРАЗЕЦ В ПАПКЕ FONTS. ДОБАВИТЬ*/
+  font-weight: 800;
+  font-style: normal;
+}
+
+/* ---------- ПЕРЕМЕННЫЕ (удобно переиспользовать цвета) ---------- */
+$color-bg-page: #1A1212;
+/*ИСПРАВИТЬ ЦВЕТ НА ПРАВИЛЬНЫЙ КАК ТОЛЬКО ПОЧИНИТСЯ ФИГМА*/
+$color-panel: #744C4C;
+$color-stripe: #FFF6EE;
+$color-title: #FFF6EE;
+$color-form-bg: #FFF6EE;
+$color-subtitle: #7E5050;
+$color-label: #744C4C;
+$color-input-bg: #744C4C;
+$color-input-text: #FFF6EE;
+$color-btn-default: #967267;
+$color-btn-text: #FFF6EE;
+$color-btn-pressed: #9A6962;
+$color-btn-text-pressed: #D5B1A2;
+
+/* ---------- ГЛАВНАЯ СТРАНИЦА ---------- */
+.page {
+  width: 1920px;
+  height: 1080px;
+  background-color: $color-bg-page;
+  position: relative;
+  margin: 0 auto;
+  overflow: hidden;
+}
+
+/* ---------- ДЕКОРАТИВНЫЕ БОКОВЫЕ ПАНЕЛИ ---------- */
+.decorPanel {
+  position: absolute;
+  top: 0;
+  width: 578px;
+  height: 1080px;
+  background-color: $color-panel;
+
+  // Модификатор для левой панели
+  &.leftPanel {
+    left: 0;
   }
-  
-  /* ---------- ПЕРЕМЕННЫЕ (удобно переиспользовать цвета) ---------- */
-  $color-bg-page: #1A1212;                                                /*ИСПРАВИТЬ ЦВЕТ НА ПРАВИЛЬНЫЙ КАК ТОЛЬКО ПОЧИНИТСЯ ФИГМА*/
-  $color-panel: #744C4C;
-  $color-stripe: #FFF6EE;
-  $color-title: #FFF6EE;
-  $color-form-bg: #FFF6EE;
-  $color-subtitle: #7E5050;
-  $color-label: #744C4C;
-  $color-input-bg: #744C4C;
-  $color-input-text: #FFF6EE;
-  $color-btn-default: #967267;
-  $color-btn-text: #FFF6EE;
-  $color-btn-pressed: #9A6962;
-  $color-btn-text-pressed: #D5B1A2;
-  
-  /* ---------- ГЛАВНАЯ СТРАНИЦА ---------- */
-  .page {
-    width: 1920px;
-    height: 1080px;
-    background-color: $color-bg-page;
-    position: relative;
-    margin: 0 auto;
-    overflow: hidden;
+
+  // Модификатор для правой панели
+  &.rightPanel {
+    right: 0;
   }
-  
-  /* ---------- ДЕКОРАТИВНЫЕ БОКОВЫЕ ПАНЕЛИ ---------- */
-  .decorPanel {
+
+  // Полосы внутри панели (общие стили)
+  .stripe {
     position: absolute;
     top: 0;
-    width: 578px;
-    height: 1080px;
-    background-color: $color-panel;
-  
-    // Модификатор для левой панели
-    &.leftPanel {
-      left: 0;
-    }
-  
-    // Модификатор для правой панели
-    &.rightPanel {
+    bottom: 0;
+    background-color: $color-stripe; // светлый цвет для видимости на тёмном фоне
+  }
+
+  // Толстая полоса 20px
+  .thick {
+    width: 20px;
+  }
+
+  // Тонкая полоса 10px
+  .thin {
+    width: 10px;
+  }
+
+  // Позиция полос для левой панели (у правого края)
+  .left {
+    &.thick {
       right: 0;
     }
-  
-    // Полосы внутри панели (общие стили)
-    .stripe {
-      position: absolute;
-      top: 0;
-      bottom: 0;
-      background-color: $color-stripe; // светлый цвет для видимости на тёмном фоне
+
+    &.thin {
+      right: 40px;
     }
-  
-    // Толстая полоса 20px
-    .thick {
-      width: 20px;
-    }
-  
-    // Тонкая полоса 10px
-    .thin {
-      width: 10px;
-    }
-  
-    // Позиция полос для левой панели (у правого края)
-    .left {
-      &.thick {
-        right: 0;
-      }
-      &.thin {
-        right: 40px;
-      }
-    }
-  
-    // Позиция полос для правой панели (зеркально, у левого края)
-    .right {
-      &.thick {
-        left: 0;
-      }
-      &.thin {
-        left: 40px;
-      }
-    }
-  
-    // Контейнер для трёх декоративных изображений
-    .imagesContainer {
-      position: absolute;
-      top: 0;
+  }
+
+  // Позиция полос для правой панели (зеркально, у левого края)
+  .right {
+    &.thick {
       left: 0;
-      width: 100%;
-      height: 100%;
-      display: flex;
-      flex-direction: column;        // вертикально
-      justify-content: space-evenly; // равномерные отступы
-      align-items: center;           // центрируем по горизонтали
-  
-      img {
-        width: 289px;
-        height: 289px;               // при реальных картинках замените на auto
-        object-fit: cover;           // обрезаем, сохраняя пропорции
-      }
+    }
+
+    &.thin {
+      left: 40px;
     }
   }
-  
-  /* ---------- ЛОГОТИП ---------- */                          /*ИСПРАВИТЬ КООРДИНАТНОЕ ПОЛОЖЕНИЕ - ВЫГЛЯДИТ ТАК, БУДТО СЪЕХАЛ ВЛЕВО, НУЖНО ПРОВЕИТЬ*/
-  .logo {
+
+  // Контейнер для трёх декоративных изображений
+  .imagesContainer {
     position: absolute;
-    top: 88px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 224px;
-    height: 224px;
-  }
-  
-  /* ---------- ЗАГОЛОВОК ---------- */
-  .titleBox {
-    position: absolute;
-    top: 291px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 520px;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
     display: flex;
-    align-items: center;
-    justify-content: center;
+    flex-direction: column; // вертикально
+    justify-content: space-evenly; // равномерные отступы
+    align-items: center; // центрируем по горизонтали
+
+    img {
+      width: 289px;
+      height: 289px; // при реальных картинках замените на auto
+      object-fit: cover; // обрезаем, сохраняя пропорции
+    }
   }
-  
-  .mainTitle {
+}
+
+/* ---------- ЛОГОТИП ---------- */
+/*ИСПРАВИТЬ КООРДИНАТНОЕ ПОЛОЖЕНИЕ - ВЫГЛЯДИТ ТАК, БУДТО СЪЕХАЛ ВЛЕВО, НУЖНО ПРОВЕИТЬ*/
+.logo {
+  position: absolute;
+  top: 88px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 224px;
+  height: 224px;
+}
+
+/* ---------- ЗАГОЛОВОК ---------- */
+.titleBox {
+  position: absolute;
+  top: 291px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 520px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.mainTitle {
+  font-family: 'KyivTypeSerif', serif;
+  font-size: 48px;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  color: $color-title;
+  margin: 0;
+  line-height: 1.2; // комфортный межстрочный интервал для двух строк
+  text-align: center;
+}
+
+/* ---------- ФОРМА АВТОРИЗАЦИИ ---------- */
+.loginForm {
+  position: absolute;
+  top: 422px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 600px;
+  min-height: 600px; // минимальная высота, может растягиваться
+  background-color: $color-form-bg;
+  padding: 40px; // внутренние отступы со всех сторон
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column; // элементы в колонку
+  align-items: center; // центрируем по горизонтали
+  gap: 40px; // увеличенный отступ между элементами (поля сдвинуты вниз)
+  border-radius: 12px; // скруглённые углы формы
+
+  // Группа: надпись + поле ввода
+  .inputGroup {
+    width: 100%; // на всю ширину формы
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; // небольшой отступ между надписью и полем
+
+    // Надписи "Логин", "Пароль"
+    .inputLabel {
+      font-family: 'KyivTypeSerif', serif;
+      font-size: 20px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      color: $color-label;
+      margin: 0;
+    }
+
+    // Поля ввода
+    .inputField {
+      width: 100%;
+      height: 93px; // фиксированная высота поля
+      background-color: $color-input-bg;
+      border: none;
+      color: $color-input-text; // цвет вводимого текста
+      font-family: serif;
+      font-size: 20px;
+      padding: 0 15px; // внутренние отступы слева и справа
+      box-sizing: border-box;
+      outline: none; // убираем обводку при фокусе
+    }
+  }
+
+
+  // Подзаголовок
+  .formSubtitle {
+    width: 100%; // занимает всю доступную ширину
     font-family: 'KyivTypeSerif', serif;
-    font-size: 48px;
+    font-size: 24px;
     font-weight: 800;
     letter-spacing: 0.08em;
-    color: $color-title;
-    margin: 0;
-    line-height: 1.2;         // комфортный межстрочный интервал для двух строк
+    color: $color-subtitle;
     text-align: center;
+    margin: 0;
+    line-height: 1.3; // нормальная высота строки для двух строк
   }
-  
-  /* ---------- ФОРМА АВТОРИЗАЦИИ ---------- */
-  .loginForm {
-    position: absolute;
-    top: 422px;
-    left: 50%;
-    transform: translateX(-50%);
-    width: 600px;
-    min-height: 600px;                // минимальная высота, может растягиваться
-    background-color: $color-form-bg;
-    padding: 40px;                    // внутренние отступы со всех сторон
-    box-sizing: border-box;
+
+  // Группа: надпись + поле ввода
+  .inputGroup {
+    width: 100%; // на всю ширину формы
     display: flex;
-    flex-direction: column;           // элементы в колонку
-    align-items: center;              // центрируем по горизонтали
-    gap: 40px;                        // увеличенный отступ между элементами (поля сдвинуты вниз)
-    border-radius: 12px;              // скруглённые углы формы
-  
-    // Подзаголовок
-    .formSubtitle {
-      width: 100%;                    // занимает всю доступную ширину
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px; // небольшой отступ между надписью и полем
+
+    // Надписи "Логин", "Пароль"
+    .inputLabel {
       font-family: 'KyivTypeSerif', serif;
-      font-size: 24px;
+      font-size: 20px;
       font-weight: 800;
       letter-spacing: 0.08em;
-      color: $color-subtitle;
-      text-align: center;
+      color: $color-label;
       margin: 0;
-      line-height: 1.3;              // нормальная высота строки для двух строк
     }
-  
-    // Группа: надпись + поле ввода
-    .inputGroup {
-      width: 100%;                    // на всю ширину формы
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      gap: 5px;                       // небольшой отступ между надписью и полем
-  
-      // Надписи "Логин", "Пароль"
-      .inputLabel {
-        font-family: 'KyivTypeSerif', serif;
-        font-size: 20px;
-        font-weight: 800;
-        letter-spacing: 0.08em;
-        color: $color-label;
-        margin: 0;
-      }
-  
-      // Поля ввода
-      .inputField {
-        width: 100%;
-        height: 93px;                 // фиксированная высота поля
-        background-color: $color-input-bg;
-        border: none;
-        color: $color-input-text;     // цвет вводимого текста
-        font-family: sans-serif;
-        font-size: 20px;
-        padding: 0 15px;              // внутренние отступы слева и справа
-        box-sizing: border-box;
-        outline: none;                // убираем обводку при фокусе
-      }
-    }
-  
-    // Кнопка "Войти"
-    .loginButton {
-      width: 222px;
-      height: 88px;
-      background-color: $color-btn-default;
+
+    // Поля ввода
+    .inputField {
+      width: 100%;
+      height: 93px; // фиксированная высота поля
+      background-color: $color-input-bg;
       border: none;
-      border-radius: 6px;             // скругление углов кнопки
-      font-family: 'KyivTypeSerif', serif;
-      font-size: 40px;
-      font-weight: 800;
-      letter-spacing: 0.08em;
-      color: $color-btn-text;
-      cursor: pointer;                // указатель мыши при наведении
-      transition: all 0.1s ease;      // плавные переходы для состояний
-  
-      // Состояние Hover – внутренняя обводка 6px
-      &:hover {
-        box-shadow: inset 0 0 0 6px $color-stripe;
-      }
-  
-      // Состояние Pressed (нажатие)
-      &:active {
-        background-color: $color-btn-pressed;
-        color: $color-btn-text-pressed;
-      }
+      color: $color-input-text; // цвет вводимого текста
+      font-family: serif;
+      font-size: 20px;
+      padding: 0 15px; // внутренние отступы слева и справа
+      box-sizing: border-box;
+      outline: none; // убираем обводку при фокусе
     }
   }
+
+}
