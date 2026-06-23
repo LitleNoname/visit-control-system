@@ -1,0 +1,12 @@
+{
+    "teachers": [
+      { "id": "1", "login": "aaa", "password": "aaa", "fullName": "Смирнов А.В." }
+    ],
+    "students": [
+      { "id": "1", "login": "bbb", "password": "bbb", "fullName": "Кузнецов А.А.", "groupId": 1 }
+    ],
+    "groups": [],
+    "disciplines": [],
+    "attendance": [],
+    "polls": []
+  }

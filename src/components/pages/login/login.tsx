@@ -4,36 +4,35 @@ import styles from './login.module.scss'
 import Input from '../../ui/input/input.tsx'
 import Button from '../../ui/button/button'
 import { useNavigate } from 'react-router-dom'
+import { authenticateUser, generateToken } from '../../../services/authService.ts';
+import { setAuth } from '../../../utils/auth.ts';
 
 
 
 export const Login = () => {
-  const [] = useState(0)
   const [login, setLogin] = useState('')       // текст в поле "Логин"
   const [password, setPassword] = useState('') // текст в поле "Пароль"
   const navigate = useNavigate()
 
   // Функция входа с захардкоженными данными
-  const handleLogin = () => {
-    // Проверка: логин "1" и пароль "1" → студент
-    if (login === '1' && password === '1') {
-      localStorage.setItem('token', 'student-token')      // сохраняем признак авторизации
-      localStorage.setItem('role', 'student')             // сохраняем роль
-      navigate('/student')                                // перенаправляем на страницу студента
-      return                                              // выходим из функции
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+    e.preventDefault(); // чтобы форма не перезагружала страницу
+  
+    try {
+      const user = await authenticateUser(login, password);
+      if (!user) {
+        alert('Неверный логин или пароль');
+        return;
+      }
+  
+      const token = generateToken();
+      setAuth(user, token);
+  
+      navigate(user.role === 'student' ? '/student' : '/teacher');
+    } catch {
+      alert('Не удалось подключиться к серверу. Запустите npm run dev');
     }
-
-    // Проверка: логин "2" и пароль "2" → лектор
-    if (login === '2' && password === '2') {
-      localStorage.setItem('token', 'teacher-token')
-      localStorage.setItem('role', 'teacher')
-      navigate('/teacher')
-      return
-    }
-
-    // Если логин/пароль не совпали — показываем ошибку
-    alert('Неверный логин или пароль')
-  }
+  };
 
 
   
@@ -83,7 +82,7 @@ export const Login = () => {
       </div>
 
       {/* ----- ФОРМА АВТОРИЗАЦИИ ----- */}
-      <div className={styles.loginForm}>
+      <form className={styles.loginForm} onSubmit={handleSubmit}>
         {/* Подзаголовок с переносом */}
         <p className={styles.formSubtitle}>
           Войдите в систему для отметки<br/>или просмотра табелей
@@ -110,11 +109,9 @@ export const Login = () => {
         />
 
         {/* Кнопка "Войти" — теперь компонент Button */}
-        <Button onClick={handleLogin}>
-          Войти
-        </Button>
+        <Button type="submit">Войти</Button>
 
-      </div>
+      </form>
     </div>
   )
 }
