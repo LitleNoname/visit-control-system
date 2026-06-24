@@ -1,12 +1,49 @@
 {
     "teachers": [
-      { "id": "1", "login": "aaa", "password": "aaa", "fullName": "Смирнов А.В." }
-    ],
+    {
+      "id": "1",
+      "login": "aaa",
+      "password": "aaa",
+      "fullName": "Смирнов А.В.",
+      "discipline1": 1,
+      "discipline2": 2,
+      "discipline3": null
+    }
+  ],
     "students": [
-      { "id": "1", "login": "bbb", "password": "bbb", "fullName": "Кузнецов А.А.", "groupId": 1 }
+      {
+        "id": "1",
+        "login": "bbb",
+        "password": "bbb",
+        "fullName": "Кузнецов А.А.",
+        "groupId": 1
+      },
+      {
+        "id": "2",
+        "login": "ccc",
+        "password": "ccc",
+        "fullName": "Петров П.П.",
+        "groupId": 1
+      }
     ],
-    "groups": [],
-    "disciplines": [],
-    "attendance": [],
+      "groups": [
+    { "id": 1, "name": "ИС-21" },
+    { "id": 2, "name": "ИС-22" },
+    { "id": 3, "name": "ИС-23" }
+  ],
+    "disciplines": [
+    { "id": 1, "name": "Программирование на Python" },
+    { "id": 2, "name": "Базы данных" },
+    { "id": 3, "name": "Веб-разработка" }
+  ],
+    "attendance": [
+    {
+      "id": 1,
+      "studentId": 1,
+      "disciplineId": 1,
+      "date": "2026-06-24",
+      "status": "P"
+    }
+  ],
     "polls": []
   }
