@@ -91,14 +91,17 @@
 
     // Состояние Hover – наведение мыши
     &:hover {
-        border: 6px solid #FFF6EE;        // внутренняя обводка (box-sizing не даёт кнопке увеличиться)
-    }
-    // Состояние при нажатии (active)
-    &:active {
         background-color: #9A6962;
+        border: 6px solid #D5B1A2;
         color: #D5B1A2;
-        border: none;                     // убираем рамку, если она была (но обычно active заменяет hover)
-    }
+      }
+    
+      // Состояние при нажатии
+      &:active {
+        background-color: #673D3D;
+        color: #D5B1A2;
+        border: none;                     // рамка убирается (если была)
+      }
   }
   
   // ---------- ФОРМА ОТМЕТКИ ----------
@@ -125,8 +128,7 @@
     gap: 20px;                          // расстояние между элементами
     box-sizing: border-box; 
     margin: 0;
-    z-index: 2;
-    color: #D4B397;  
+    z-index: 2; 
   }
   
   // Подзаголовок "Входящий опрос"
@@ -230,7 +232,7 @@
       position: absolute;
       right: 0;
       height: 100%;
-      background-color: #FFF6EE;        // цвет полос совпадает с фоном панели (по условию)
+      background-color: #D4B397;        // цвет полос совпадает с фоном панели (по условию)
     }
   
     .thick {

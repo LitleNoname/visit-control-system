@@ -6,6 +6,7 @@ import Button from '../../ui/button/button'
 import { useNavigate } from 'react-router-dom'
 import { authenticateUser, generateToken } from '../../../services/authService.ts';
 import { setAuth } from '../../../utils/auth.ts';
+import logo from '../../../assets/react.svg';
 
 
 
