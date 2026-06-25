@@ -1,0 +1,278 @@
+// Подключение нестандартного шрифта Kyiv*Type-Serif (начертание Heavy2)
+@font-face {
+    font-family: 'KyivTypeSerif';
+    // Пути к файлам шрифта в папке fonts. Проверьте имена файлов!
+    src: url('../../fonts/KyivTypeSerif-Heavy2.woff2') format('woff2'),
+         url('../../fonts/KyivTypeSerif-Heavy2.woff') format('woff');
+    font-weight: 900; // Heavy2 соответствует максимальной жирности (обычно 900)
+    font-style: normal;
+    font-display: swap; // Текст будет виден сразу, пока шрифт загружается
+  }
+
+  
+    // Общие настройки для всей страницы
+    .main-student-page {
+        position: relative;          // чтобы дочерние элементы можно было позиционировать абсолютно
+        width: 1920px;              // фиксированная ширина макета
+        height: 1080px;             // фиксированная высота макета
+        background-color: #967267;  // цвет фона всей страницы
+        overflow: hidden;           // скрываем всё, что выходит за пределы (для безопасности)
+        font-family: 'KyivTypeSerif', serif; // применяем наш шрифт ко всем текстам по умолчанию
+        font-weight: 900;           // жирность Heavy2
+    }
+
+  // ---------- ЛОГОТИП ----------
+  .logo {
+    position: absolute;
+    left: 6px;                  // отступ слева 6px
+    top: 6px;                   // отступ сверху 6px
+    width: 224px;
+    height: 224px;
+    object-fit: contain;
+    z-index: 10;        // сохраняем пропорции изображения, если оно не 224×224
+  }
+  
+  // ---------- БЛОК С ЗАГОЛОВКОМ И ХЛЕБНЫМИ КРОШКАМИ ----------
+  .title-section {
+    position: absolute;
+    left: 210px;                // логотип заканчивается на 6+224=230px, поле заходит на 20px → 210px
+    top: 66.5px;                // центр логотипа по вертикали (6 + 112 = 118) минус половина высоты заголовка (103/2 = 51.5) → 66.5
+  }
+  
+  // Поле заголовка "Контроль посещения"
+  .title-field {
+    width: 609px;
+    height: 103px;
+    background-color: #744C4C;
+    border-radius: 6px;
+    display: flex;
+    align-items: center;        // вертикальное центрирование текста
+    justify-content: center;    // горизонтальное центрирование текста
+  }
+  
+  // Текст внутри поля заголовка
+  .title-text {
+    color: #FFFFFF;             // белый цвет для контраста на тёмном фоне (явно не задан в условии, добавлен для читаемости)
+    font-size: 36px;
+    letter-spacing: 0.08em;    // 8% от размера шрифта (относительная единица em)
+    line-height: normal;       // авто-высота (обычное поведение)
+  }
+  
+  // Хлебные крошки
+  .breadcrumbs {
+    margin-top: 10px;           // небольшой отступ от поля заголовка (не указан жёстко, добавлен для красоты)
+    font-size: 36px;
+    color: #D4B397;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  
+  // ---------- КНОПКА "ВЫЙТИ" ----------
+  .logout-button {
+    position: absolute;
+    left: 1650px;
+    top: 51px;
+    width: 232px;
+    height: 88px;
+    background-color: #744C4C;
+    border: none;
+    border-radius: 6px;
+    color: #FFF6EE;
+    font-family: 'KyivTypeSerif', serif;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.1s ease;
+
+    // Состояние Hover – наведение мыши
+    &:hover {
+        border: 6px solid #FFF6EE;        // внутренняя обводка (box-sizing не даёт кнопке увеличиться)
+    }
+    // Состояние при нажатии (active)
+    &:active {
+        background-color: #9A6962;
+        color: #D5B1A2;
+        border: none;                     // убираем рамку, если она была (но обычно active заменяет hover)
+    }
+  }
+  
+  // ---------- ФОРМА ОТМЕТКИ ----------
+  .form-container {
+    position: absolute;
+    top: 260px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 742px;
+    height: 752px;
+    border-radius: 12px;
+    z-index: 2;
+    background-color: #D4B397;
+    margin: 0;    
+  }
+  
+  // Общий контейнер для содержимого формы (активная и заблокированная одинаковы по структуре)
+  .form-content {
+    width: 100%;
+    height: 100%;
+    padding: 40px;                      // отступы от краёв формы
+    display: flex;
+    flex-direction: column;             // элементы идут сверху вниз
+    gap: 20px;                          // расстояние между элементами
+    box-sizing: border-box; 
+    margin: 0;
+    z-index: 2;
+    color: #D4B397;  
+  }
+  
+  // Подзаголовок "Входящий опрос"
+  .form-subtitle {
+    height: 67px;                       // фиксированная высота поля
+    width: 100%;                        // занимает всю доступную ширину контейнера
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7E5050;
+    font-size: 40px;
+    letter-spacing: 0.08em;
+  }
+  
+  // Поле ввода (только для чтения)
+  .form-field.readonly {
+    height: 96px;
+    width: 100%;
+    background-color: #744C4C;
+    display: flex;
+    align-items: center;
+    padding-left: 20px;                 // небольшой левый отступ для текста
+    box-sizing: border-box;
+  }
+  
+  // Текст-плейсхолдер внутри нередактируемого поля
+  .placeholder {
+    color: #B38678;
+    font-size: 20px;
+    letter-spacing: 0.08em;
+  }
+  
+  // Кнопка "Отметиться"
+  .form-button {
+    height: 88px;
+    width: 363px;
+    background-color: #967267;
+    border: none;
+    border-radius: 6px;
+    color: #FFF6EE;
+    font-family: 'KyivTypeSerif', serif;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    cursor: pointer;
+    align-self: center;                 // кнопка центрируется по горизонтали внутри колонки
+    box-sizing: border-box;             // чтобы границы не меняли размер
+  
+    // Состояние при наведении (hover)
+    &:hover {
+      border: 6px solid #FFF6EE;        // внутренняя обводка (box-sizing не даёт кнопке увеличиться)
+    }
+  
+    // Состояние при нажатии (active)
+    &:active {
+      background-color: #9A6962;
+      color: #D5B1A2;
+      border: none;                     // убираем рамку, если она была (но обычно active заменяет hover)
+    }
+  }
+  
+  // ---------- ЗАБЛОКИРОВАННАЯ ФОРМА ----------
+  // Куб, заполняющий оставшееся пространство
+  .empty-cube {
+    flex: 1;                            // занимает всё свободное место внутри form-content
+    background-color: #744C4C;
+    position: relative;                 // чтобы позиционировать внутренний текст
+    min-height: 0;                      // позволяет flex-элементу сжиматься при необходимости
+  }
+  
+  // Центрированный блок с сообщением внутри куба
+  .empty-message {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);   // идеальное центрирование
+    width: 100%;                        // можно растянуть на всю ширину родителя (но padding у куба нет)
+    height: 240px;                      // высота поля текста (фиксированная, но текст внутри может быть меньше)
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #7E5050;
+    font-size: 40px;
+    letter-spacing: 0.08em;
+    text-align: center;
+  }
+  
+  // ---------- ДЕКОРАТИВНАЯ ПАНЕЛЬ СЛЕВА ----------
+  .decorative-bar {
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 144px;
+    height: 1080px;
+    background-color: #744C4C;
+    z-index: 1;
+  
+    // Вертикальные полосы на правой стороне панели
+    .stripe {
+      position: absolute;
+      right: 0;
+      height: 100%;
+      background-color: #FFF6EE;        // цвет полос совпадает с фоном панели (по условию)
+    }
+  
+    .thick {
+      width: 20px;                      // первая толстая полоса
+    }
+  
+    .thin {
+      width: 10px;                      // вторая тонкая полоса
+      right: 60px;                      // отступ 40px от первой (20px + 40px = 60px от правого края)
+    }
+  }
+  
+  // ---------- КНОПКА "ПОСМОТРЕТЬ ПОСЕЩАЕМОСТЬ" ----------
+  .attendance-button {
+    position: absolute;
+    bottom: 40px;                       // отступ от нижнего края (выбран примерно, т.к. точных координат нет)
+    right: 40px;                        // отступ от правого края
+    width: 484px;
+    height: 136px;
+    background-color: #744C4C;
+    border: none;
+    border-radius: 6px;
+    color: #FFF6EE;
+    font-family: 'KyivTypeSerif', serif;
+    font-weight: 900;
+    font-size: 40px;
+    letter-spacing: 0.08em;
+    text-align: center;
+    cursor: pointer;
+    box-sizing: border-box;
+  
+    // Состояние при наведении
+    &:hover {
+      background-color: #9A6962;
+      border: 6px solid #D5B1A2;
+      color: #D5B1A2;
+    }
+  
+    // Состояние при нажатии
+    &:active {
+      background-color: #673D3D;
+      color: #D5B1A2;
+      border: none;                     // рамка убирается (если была)
+    }
+  }
